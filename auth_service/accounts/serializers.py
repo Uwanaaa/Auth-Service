@@ -56,7 +56,7 @@ class ResetPasswordSerializer(serializers.Serializer):
     
 
     def validate(self, attrs):
-        token = attrs.get('access')
+        token = attrs.get('token')
         if not token:
             raise serializers.ValidationError(_('Token is required'))
         return attrs
