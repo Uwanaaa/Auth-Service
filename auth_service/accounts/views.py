@@ -12,6 +12,7 @@ from rest_framework.response import Response
 from rest_framework import status
 import redis, uuid, os
 from dotenv import load_dotenv
+from django.template.loader import render_to_string
 
 
 load_dotenv()
@@ -101,9 +102,12 @@ class ForgotPasswordView(generics.GenericAPIView):
         
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        subject = 'Password Reset'
+        context = {'reset_code': token, 'full_name': user.full_name, 'year': 2025}
+        message = render_to_string('template/password_reset_email.html', context)
         send_mail(
-            'Password Reset',
-            f'Your password reset token is: {token}',
+            subject,
+            message,
             settings.DEFAULT_FROM_EMAIL,
             [email],
             fail_silently=True,
