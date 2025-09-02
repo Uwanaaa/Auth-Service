@@ -46,10 +46,14 @@ This project is a Django-based authentication service that implements user accou
    Create a `.env` file in the root directory and add the following variables:
 
    ```
-   SECRET_KEY=<your-secret-key>
-   DEBUG=True
-   DATABASE_URL=postgres://<user>:<password>@localhost:5432/<dbname>
-   REDIS_URL=redis://localhost:6379/0
+   DATABASE_HOST=dpg-d2odi9ndiees73baej2g-a.frankfurt-postgres.render.com
+   DATABASE_NAME=bill_station_6ioi
+   DATABASE_USER=bill_station_6ioi_user
+   DATABASE_PASSWORD=XKu2Tzt2z8MBZRgU1yjCE8G6zwlGrlhS
+   DATABASE_PORT=5432
+   REDIS_URL=rediss://red-cqojq3lds78s73c1tqs0:e5mtKopDCa1u6tSLYyEvuD9tBPdjJQGn@frankfurt-keyvalue.render.com:6379
+   SECRET_KEY=your-secret-key
+   DEBUG=True (if you want to run on test mode)
    ```
 
 5. **Run migrations:**
@@ -100,6 +104,9 @@ This project is a Django-based authentication service that implements user accou
    ```
 
 This will start the Django application and a Redis service.
+
+## Deployment Link
+
 
 ## License
 
