@@ -82,10 +82,10 @@ This project is a Django-based authentication service that implements user accou
 
 ## API Endpoints
 
-- **POST /api/register/** - User registration
-- **POST /api/login/** - User login
-- **POST /api/password-reset/** - Request password reset
-- **POST /api/password-reset-confirm/** - Confirm password reset
+- **POST /api/v1/register/** - User registration
+- **POST /api/v1/login/** - User login
+- **POST /api/v1/forgot-password/** - Request password reset
+- **POST /api/v1/password-reset/** - Password reset
 
 ## Deployment Instructions
 
@@ -106,7 +106,7 @@ This project is a Django-based authentication service that implements user accou
 This will start the Django application and a Redis service.
 
 ## Deployment Link
-
+https://auth-service-bujw.onrender.com
 
 ## License
 
