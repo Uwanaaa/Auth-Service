@@ -3,7 +3,7 @@ from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.conf import settings
 from drf_spectacular.utils import extend_schema
 from .serializers import UserSerializer, LoginSerializer, ForgotPasswordSerializer, ResetPasswordSerializer
@@ -102,16 +102,19 @@ class ForgotPasswordView(generics.GenericAPIView):
         
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        subject = 'Password Reset'
+
         context = {'reset_code': token, 'full_name': user.full_name}
         message = render_to_string('emails/password-reset.html', context)
-        send_mail(
-            subject,
-            message,
-            settings.DEFAULT_FROM_EMAIL,
-            [email],
-            fail_silently=True,
+
+        email = EmailMessage(
+        subject='Password Reset',
+        body=message,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[email],
         )
+
+        email.content_subtype = "html"  
+        email.send(fail_silently=False)
 
         return Response({"message": "Password reset token sent to email."}, status=status.HTTP_200_OK)
 
