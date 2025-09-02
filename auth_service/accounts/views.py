@@ -103,7 +103,7 @@ class ForgotPasswordView(generics.GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         subject = 'Password Reset'
-        context = {'reset_code': token, 'full_name': user.full_name, 'year': 2025}
+        context = {'reset_code': token, 'full_name': user.full_name}
         message = render_to_string('emails/password-reset.html', context)
         send_mail(
             subject,
