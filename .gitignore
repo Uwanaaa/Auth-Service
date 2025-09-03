@@ -1,2 +1,3 @@
 auth_service/.env
-bill-station
+bill-station/
+venv/
